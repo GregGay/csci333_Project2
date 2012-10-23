@@ -10,5 +10,6 @@ TwoDArray.o: TwoDArray.h TwoDArray.cpp
 
 clean:
 	rm -f *.o;
-	rm -f $(BUILD)/TwoDArray;
+	rm -f $(BUILD)/TwoDArray; 
+	rm -f main;
 	rm -f *~;
