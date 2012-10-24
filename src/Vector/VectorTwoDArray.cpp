@@ -20,29 +20,11 @@ VectorTwoDArray<T>::VectorTwoDArray(int r, int c, T def) {
 	  }
 	  theArray.push_back(rows);
     }
-
-    /*
-    theArray = new T[r];
-
-    for(int i = 0; i < r; ++i) {
-	  theArray[i] = new T[c];
-    }
-
-    for(int i = 0; i < row; i++) {
-	  for (int j = 0; j < col; j++) {
-		theArray[i][j] = Def;
-	  }
-    }*/
 }
 
 template <typename T>
 VectorTwoDArray<T>::~VectorTwoDArray() {
-/*    for(int i = 0; i < row; i++) {
-	  delete[] theArray[i];
-    }
 
-    delete[] theArray;
-*/
 }
 
 template <typename T>
