@@ -8,6 +8,7 @@ using std::endl;
 
 int main() {
     SparseArray<int>* twoDInt = new SparseArray<int>(2, 2, 1);
+    twoDInt->insert(1, 0, 7);
     cout << twoDInt->access(1, 0) << endl;
    /* 
     cout << "Integer insert: ";
