@@ -3,6 +3,7 @@
 #include "../src/Vector/VectorTwoDArray.h"
 #include "../src/SparseArray/SparseArray.h"
 #include "../src/SparseArray/Node.h"
+#include <iostream>
 #include <string>
 
 using std::string;
@@ -85,15 +86,15 @@ TEST(VectorTwoDArrayTest, InsertString) {
     EXPECT_EQ("Vector", tDString->access(1, 1));
     delete tDString;
 }
-/*
+
 TEST(SparseArrayTest, InsertString) {
     SparseArray<string>* tDString = new SparseArray<string>(3, 3, "default");
-    tDString->insert(1, 1, "Sparse");
+    tDString->insert(1, 2, "Sparse");
 
-    EXPECT_EQ("Sparse", tDString->access(1, 1));
+    EXPECT_EQ("Sparse", tDString->access(1, 2));
     delete tDString;
 }
-*/
+
 TEST(TwoDArrayRow, NumRow) {
     TwoDArray<int>* tDInt = new TwoDArray<int>(10, 10, 0);
     TwoDArray<double>* tDDouble = new TwoDArray<double>(11, 11, 0.0);
@@ -359,7 +360,6 @@ TEST(SparseArrayRemove, RemoveDouble) {
 
 TEST(SparseArrayRemove, RemoveString) {
     SparseArray<string>* tDString = new SparseArray<string>(10, 10, "default");
-    
     for (int i=0; i<10; i++) {
 	  tDString->insert(i, i, "HELLO");
     }
