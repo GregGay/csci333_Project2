@@ -2,23 +2,25 @@
 #include "assert.h"
 #include <iostream>
 #include <string>
-#include <vector>
 
 using std::cout;
 using std::endl;
+using std::vector;
 
 template <typename T>
 VectorTwoDArray<T>::VectorTwoDArray(int r, int c, T def) {
     row = r;
     col = c;
     Def = def;
+    
+    vector<T> column;
 
-    for (int i = 0; i < r; i++) {
-	  std::vector<T> rows;
-	  for (int j = 0; j < c; j++) {
-		rows.push_back(i * j);
-	  }
-	  theArray.push_back(rows);
+    for (int i = 0; i < c; i++) {
+	  column.push_back(def);
+    }
+
+    for (int j = 0; j < r; j++) {
+	  theArray.push_back(column);
     }
 }
 
@@ -53,13 +55,13 @@ void VectorTwoDArray<T>::remove(int r, int c) {
 
 template <typename T>
 void VectorTwoDArray<T>::print() {
-    cout << "[ ";
     for(int i = 0; i < row; i++) {
+	  cout << "[ ";
 	  for(int j = 0; j < col; j++) {
 		cout << theArray[i][j] << " ";
 	  }
+	  cout << "]" << endl;
     }
-    cout << "]" << endl;
 }
 
 template <typename T>
@@ -74,4 +76,4 @@ int VectorTwoDArray<T>::getNumCols() {
 
 template class VectorTwoDArray<int>;
 template class VectorTwoDArray<double>;
-//template class VectorTwoDArray<std::string>;
+template class VectorTwoDArray<std::string>;
