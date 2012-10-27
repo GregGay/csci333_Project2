@@ -26,16 +26,16 @@ SparseArray<T>::SparseArray(int r, int c, T def) {
 
 template <typename T>
 SparseArray<T>::~SparseArray() {
-    for (int i = 0; i < row; i++) {
-	  delete[] rows[i];
-    }
+    Node<T>* cur = rows[0];
+    Node<T>* temp = cur;
     
-    for (int j = 0; j < col; j++) {
-	  delete[] cols[j];
+    for(int i = 0; i<row; i++) {
+	  cur = rows[i];
+	  while(cur != 0 && cur->getNextRow() != 0) {
+		cur = cur->getNextRow();
+		delete temp;
+	  }
     }
-
-    delete[] rows;
-    delete[] cols;
 }
 
 template <typename T>
@@ -82,39 +82,6 @@ void SparseArray<T>::remove(int r, int c) {
     assert(c >= 0 && c < col);
 
     insert(r, c, Def);
-/*    
-    if (rows != 0 && cols != 0) {
-	  Node<T>** curRow = &rows[r];
-	  Node<T>** curCol = &cols[c];
-	  Node<T>** preRow = &rows[r];
-	  Node<T>** preCol = &cols[c];
-
-	  while(*curRow != 0 && (*curRow)->getNumRow() < r) {
-		curRow = &((*curRow)->getNextRow());
-	  }
-    
-	  while(*curCol != 0 && (*curCol)->getNumCol() < c) {
-		curCol = &((*curCol)->getNextCol());
-	  }
-	  
-	  while (*curRow != 0 && curRow->getNumRow() != r) {
-		preRow = curRow;
-		curRow = &((*curRow)->getNextRow());
-	  }
-
-	  while (*curCol != 0 && curCol->getNumCol() != r) {
-		preCol = curCol;
-		curCol = &((*curCol)->getNextCol());
-	  }
-
-	  Node<T>* temp = new Node<T>(r, c);
-	  temp->setNextRow(**curRow);
-	  //temp->setNextCol(**curCol);
-	  curRow = &((*cur)->getNextRow());
-	  (*preRow)->setNextRow(**curr);
-	  *curRow = temp;
-	  delete[] (*curRow);
-    }*/
 }
 
 template <typename T>
