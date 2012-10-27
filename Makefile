@@ -2,11 +2,10 @@ BUILD = build
 TEST = test
 LIB = lib
 SRC = src
-
 CPP = g++
 CFLAGS = -Wall -Wextra -Werror
 
-all: $(BUILD)/main $(BUILD)/TwoDArrayTest
+all: clean $(BUILD)/main $(BUILD)/TwoDArrayTest
 
 $(BUILD)/main:
 	  cd $(SRC); $(MAKE)
