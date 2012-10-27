@@ -335,3 +335,36 @@ TEST(VectorTwoDArrayRemove, RemoveString) {
     delete tDString;
 }
 
+TEST(SparseArrayRemove, RemoveInt) {
+    SparseArray<int>* tDInt = new SparseArray<int>(10, 10, 5);
+    
+    for (int i=0; i<10; i++) {
+	  tDInt->insert(i, i, 7);
+    }
+    tDInt->remove(7, 5);
+    EXPECT_EQ(5, tDInt->access(7, 5));
+    delete tDInt;
+}
+
+TEST(SparseArrayRemove, RemoveDouble) {
+    SparseArray<double>* tDDouble = new SparseArray<double>(10, 10, 5.5);
+    
+    for (int i=0; i<10; i++) {
+	  tDDouble->insert(i, i, 7.7);
+    }
+    tDDouble->remove(7, 5);
+    EXPECT_EQ(5.5, tDDouble->access(7, 5));
+    delete tDDouble;
+}
+
+TEST(SparseArrayRemove, RemoveString) {
+    SparseArray<string>* tDString = new SparseArray<string>(10, 10, "default");
+    
+    for (int i=0; i<10; i++) {
+	  tDString->insert(i, i, "HELLO");
+    }
+    tDString->remove(7, 5);
+    EXPECT_EQ("default", tDString->access(7, 5));
+    delete tDString;
+}
+
