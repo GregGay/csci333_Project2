@@ -20,7 +20,7 @@ SparseArray<T>::SparseArray(int r, int c, T def) {
     }
     
     for (int j = 0; j < c; j++) {
-	  rows[j] = 0;
+	  cols[j] = 0;
     }
 }
 
@@ -43,18 +43,18 @@ void SparseArray<T>::insert(int r, int c, T value) {
     assert(r >= 0 && r < row);
     assert(c >= 0 && c < col);
 
+    Node<T>* temp = new Node<T>(r, c, value);
     Node<T>** curRow = &rows[r];
-    Node<T>** curCol = &cols[r];
-    
-    while(*curRow != 0 && (*curRow)->getNumRow() < r) {
-	  curRow = &((*curRow)->getNextRow());
-    }
+    Node<T>** curCol = &cols[c];
     
     while(*curCol != 0 && (*curCol)->getNumCol() < c) {
 	  curCol = &((*curCol)->getNextCol());
     }
+    
+    while(*curRow != 0 && (*curRow)->getNumRow() < r) {
+	  curRow = &((*curRow)->getNextRow());
+    }
 
-    Node<T>* temp = new Node<T>(r, c, value);
     temp->setNextRow(**curRow);
     *curRow = temp;
 
@@ -81,14 +81,54 @@ void SparseArray<T>::remove(int r, int c) {
     assert(r >= 0 && r < row);
     assert(c >= 0 && c < col);
     
-    theArray[r][c] = Def;
+    if (rows != 0 && cols != 0) {
+	  Node<T>** curRow = &rows[r];
+	  Node<T>** curCol = &cols[c];
+	  Node<T>** preRow = &rows[r];
+	  Node<T>** preCol = &cols[c];
+
+	  while(*curRow != 0 && (*curRow)->getNumRow() < r) {
+		curRow = &((*curRow)->getNextRow());
+	  }
+    
+	  while(*curCol != 0 && (*curCol)->getNumCol() < c) {
+		curCol = &((*curCol)->getNextCol());
+	  }
+	  
+	  while (*curRow != 0 && curRow->getNumRow() != r) {
+		preRow = curRow;
+		curRow = &((*curRow)->getNextRow());
+	  }
+
+	  while (*curCol != 0 && curCol->getNumCol() != r) {
+		preCol = curCol;
+		curCol = &((*curCol)->getNextCol());
+	  }
+
+	  Node<T>* temp = new Node<T>(r, c);
+	  temp->setNextRow(**curRow);
+	  //temp->setNextCol(**curCol);
+	  curRow = &((*cur)->getNextRow());
+	  (*preRow)->setNextRow(**curr);
+	  *curRow = temp;
+	  delete[] (*curRow);
+    }
 }
+*/
 
 template <typename T>
 void SparseArray<T>::print() {
-    Node<T>* curRow = row;
-    Node<T>* curCol = col;
-    
+    //Node<T>* curRow = row;
+    //Node<T>* curCol = col;
+
+    for (int i = 0; i < row; i++) {
+	  cout << "[ ";
+	  for (int j = 0; j < col; j++) { 
+		cout << access(i, j) << " ";
+	  }
+	  cout << "]" << endl;
+    }
+/*    
     std::cout << "[";
     while(curRow != 0 && curCol !=0) {
 	  std::cout << curRow->getValue();
@@ -98,9 +138,9 @@ void SparseArray<T>::print() {
 	  curRow = curRow->getNextRow();
 	  curCol = curCol->getNextCol();
     }
-    std::cout << "]" << std::endl;
+    std::cout << "]" << std::endl;*/
 }
-*/
+
 template <typename T>
 int SparseArray<T>::getNumRows() {
     return row;
