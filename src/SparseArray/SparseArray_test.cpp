@@ -50,6 +50,7 @@ int main() {
     cout << "String remove: " << endl;
     twoDString->remove(1, 0);
     twoDString->print();
-    
+
+    cout << "String access: " << twoDString->access(0, 1) << endl;    
     return 0;
 }
