@@ -368,3 +368,93 @@ TEST(SparseArrayRemove, RemoveString) {
     delete tDString;
 }
 
+TEST(TwoDArray, PrintInt) {
+    TwoDArray<int>* tdInt = new TwoDArray<int>(5, 5, 0);
+    for (int i = 0; i < 5; i++) {
+	  tdInt->insert(i, i, 7);
+    }
+    std::cout << "TDArray Integer print" << std::endl;
+    tdInt->print();
+    delete tdInt;
+}
+
+TEST(TwoDArray, PrintDouble) {
+    TwoDArray<double>* tdD = new TwoDArray<double>(5, 5, 0.00);
+    for (int i = 0; i < 5; i++) {
+	  tdD->insert(i, i, 7.77);
+    }
+    std::cout << "TDArray Double print" << std::endl;
+    tdD->print();
+    delete tdD;
+}
+
+TEST(TwoDArray, PrintString) {
+    TwoDArray<string>* tdS = new TwoDArray<string>(5, 5, "default");
+    for (int i = 0; i < 5; i++) {
+	  tdS->insert(i, i, "hello");
+    }
+    std::cout << "TDArray String print" << std::endl;
+    tdS->print();
+    delete tdS;
+}
+
+TEST(VectorTwoDArray, PrintInt) {
+    VectorTwoDArray<int>* tdI = new VectorTwoDArray<int>(5, 5, 0);
+    for (int i = 0; i < 5; i++) {
+	  tdI->insert(i, i, 2);
+    }
+    std::cout << "Vector Integer print" << std::endl;
+    tdI->print();
+    delete tdI;
+}
+
+TEST(VectorTwoDArray, PrintDouble) {
+    VectorTwoDArray<double>* tdD = new VectorTwoDArray<double>(5, 5, 0.0);
+    for (int i = 0; i < 5; i++) {
+	  tdD->insert(i, i, 6.8);
+    }
+    std::cout << "Vector Double print" << std::endl;
+    tdD->print();
+    delete tdD;
+}
+
+TEST(VectorTwoDArray, PrintString) {
+    VectorTwoDArray<string>* tdS = new VectorTwoDArray<string>(5, 5, "default");
+    for (int i = 0; i < 5; i++) {
+	  tdS->insert(i, i, "world");
+    }
+    std::cout << "Vector String print" << std::endl;
+    tdS->print();
+    delete tdS;
+}
+
+TEST(SparseArray, PrintInt) {
+    SparseArray<int>* tdI = new SparseArray<int>(5, 5, 0);
+    for (int i = 0; i < 5; i++) {
+	  tdI->insert(i, i, 4);
+    }
+    std::cout << "SparseArray Integer print" << std::endl;
+    tdI->print();
+    delete tdI;
+}
+
+TEST(SparseArray, PrintDouble) {
+    SparseArray<double>* tdD = new SparseArray<double>(5, 5, 0.0);
+    for (int i = 0; i < 5; i++) {
+	  tdD->insert(i, i, 2.9);
+    }
+    std::cout << "SparseArray Double print" << std::endl;
+    tdD->print();
+    delete tdD;
+}
+
+TEST(SparseArray, PrintString) {
+    SparseArray<string>* tdS = new SparseArray<string>(5, 5, "default");
+    for (int i = 0; i < 5; i++) {
+	  tdS->insert(i, i, "Greg");
+    }
+    std::cout << "SparseArray String print" << std::endl;
+    tdS->print();
+    delete tdS;
+}
+
