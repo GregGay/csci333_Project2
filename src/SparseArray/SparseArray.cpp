@@ -75,12 +75,14 @@ T SparseArray<T>::access(int r, int c) {
     }
     return Def;
 }
-/*
+
 template <typename T>
 void SparseArray<T>::remove(int r, int c) {
     assert(r >= 0 && r < row);
     assert(c >= 0 && c < col);
-    
+
+    insert(r, c, Def);
+/*    
     if (rows != 0 && cols != 0) {
 	  Node<T>** curRow = &rows[r];
 	  Node<T>** curCol = &cols[c];
@@ -112,15 +114,11 @@ void SparseArray<T>::remove(int r, int c) {
 	  (*preRow)->setNextRow(**curr);
 	  *curRow = temp;
 	  delete[] (*curRow);
-    }
+    }*/
 }
-*/
 
 template <typename T>
 void SparseArray<T>::print() {
-    //Node<T>* curRow = row;
-    //Node<T>* curCol = col;
-
     for (int i = 0; i < row; i++) {
 	  cout << "[ ";
 	  for (int j = 0; j < col; j++) { 
@@ -128,17 +126,6 @@ void SparseArray<T>::print() {
 	  }
 	  cout << "]" << endl;
     }
-/*    
-    std::cout << "[";
-    while(curRow != 0 && curCol !=0) {
-	  std::cout << curRow->getValue();
-	  if(curRow->getNextRow() != 0 && curCol->getNextCol() != 0) {
-		std::cout << ", ";
-	  }
-	  curRow = curRow->getNextRow();
-	  curCol = curCol->getNextCol();
-    }
-    std::cout << "]" << std::endl;*/
 }
 
 template <typename T>
